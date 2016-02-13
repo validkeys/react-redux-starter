@@ -7,9 +7,20 @@ import {
   combineReducers }       from 'redux';
 import thunk              from 'redux-thunk';
 import createLogger       from 'redux-logger';
-import * as reducers from './reducers';
+import * as reducers      from './reducers';
+import { routeReducer, syncHistory } from 'react-router-redux';
+import { browserHistory } from 'react-router';
+import { extend }         from 'lodash';
 
-const combinedReducers  = combineReducers({ reducers });
-const loggerMiddleware  = createLogger();
+const combinedReducers  = combineReducers(extend({}, reducers, {
+  routing: routeReducer
+}));
 
-export const store      = createStore(combinedReducers, applyMiddleware(thunk, loggerMiddleware));
+const loggerMiddleware          = createLogger();
+const reduxRouterMiddleware     = syncHistory(browserHistory);
+const createStoreWithMiddleware = applyMiddleware(thunk, loggerMiddleware, reduxRouterMiddleware)(createStore);
+const store                     = createStoreWithMiddleware(combinedReducers);
+
+reduxRouterMiddleware.listenForReplays(store);
+
+export { store };

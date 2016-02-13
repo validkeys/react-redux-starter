@@ -24,6 +24,12 @@ const Component = React.createClass({
     return (
       <div styleName='example-container' className="my-example-container">
         "HELLO"
+
+        <div>
+          Redux Router
+          <div>{this.props.state.routing.location.pathname}</div>
+        </div>
+
       </div>
     );
   }
