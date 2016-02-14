@@ -33,7 +33,7 @@ module.exports = {
   ],
 
   resolve: {
-    root:       ['./src',Path.resolve('..','core')],
+    root:       ['./src'],
     extensions: ['','.js','.jsx'],
     alias: {
       'react': Path.join(__dirname,'node_modules','react')
