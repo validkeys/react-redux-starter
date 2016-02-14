@@ -1,9 +1,9 @@
 // Creates the store
 // -- combines core reducers with local reducers
-import { 
-  createStore, 
-  bindActionCreators, 
-  applyMiddleware, 
+import {
+  createStore,
+  bindActionCreators,
+  applyMiddleware,
   combineReducers }       from 'redux';
 import thunk              from 'redux-thunk';
 import createLogger       from 'redux-logger';
@@ -18,7 +18,12 @@ const combinedReducers  = combineReducers(extend({}, reducers, {
 
 const loggerMiddleware          = createLogger();
 const reduxRouterMiddleware     = syncHistory(browserHistory);
-const createStoreWithMiddleware = applyMiddleware(thunk, loggerMiddleware, reduxRouterMiddleware)(createStore);
+
+// NOTE!!!!
+// Ensure that loggerMiddleware is ALWAYS last!!!
+const createStoreWithMiddleware = applyMiddleware(thunk, reduxRouterMiddleware, loggerMiddleware)(createStore);
+
+
 const store                     = createStoreWithMiddleware(combinedReducers);
 
 reduxRouterMiddleware.listenForReplays(store);
