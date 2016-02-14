@@ -17,8 +17,8 @@ module.exports = {
         loaders: ['react-hot','babel-loader'],
         exclude: /node_modules/
       },
-      { 
-        test: /\.styl$/, 
+      {
+        test: /\.styl$/,
         loaders: [
           'style',
           'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
@@ -29,17 +29,7 @@ module.exports = {
   },
 
   plugins: [
-    // replaces all instances of process.env.NODE_ENV with the string "production".
-    // When used in conjunction with the uglify plugin, all the code in React that 
-    // is inside a dev only conditional like if ("production" !== process.env.NODE_ENV) { ... } will be stripped.
-    // new webpack.DefinePlugin({ 'process.env': { NODE_ENV: '"production"' } }),
-    // new CompressionPlugin({
-    //     asset: "{file}",
-    //     algorithm: "gzip",
-    //     regExp: /\.js$|\.html$/,
-    //     threshold: 10240,
-    //     minRatio: 0.8
-    // })
+    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: '"development"' } }),
   ],
 
   resolve: {
