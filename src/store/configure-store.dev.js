@@ -8,7 +8,7 @@ import thunk              from 'redux-thunk';
 import createLogger       from 'redux-logger';
 import { syncHistory } from 'react-router-redux';
 import { browserHistory } from 'react-router';
-import DevTools           from '../containers/devtools';
+import DevTools           from '../components/containers/devtools';
 import rootReducer from '../reducers';
 
 

@@ -9,6 +9,13 @@ module.exports = {
     publicPath: 'http://localhost:3001/assets'
   },
 
+  proxy: {
+    '/api/*': {
+      target: "http://localhost:3000",
+      secure: false
+    }
+  },
+
   module: {
     loaders: [
       {

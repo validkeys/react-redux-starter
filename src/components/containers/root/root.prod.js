@@ -1,20 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../../actions';
+import * as actions from '../../../actions';
 import CSSModules from 'react-css-modules';
 
-
-import DevTools from '../devtools';
-import ExampleComponent from '../../components/example';
+import ExampleComponent from '../../../components/example';
 
 const Component = React.createClass({
   render() {
     return (
       <div>
-        App Container:
+        Root Container:
         <ExampleComponent />
-        <DevTools />
       </div>
     );
   }
