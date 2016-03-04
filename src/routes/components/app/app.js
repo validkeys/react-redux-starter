@@ -1,12 +1,26 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './styles.styl';
+import { connect } from 'react-redux';
+import {
+  appSelector
+} from '../../../state/modules/app/selectors';
 
-const AppComponent = ( props ) => (
-  <div styleName="root">
-    Application Route
-    {props.children}
-  </div>
-)
+import ExampleComponent from '../../../components/domain/app/example';
 
-export default CSSModules(AppComponent, styles);
+const AppComponent = ( props ) => {
+  const styleName = (props.app.loaded) ? "root-loaded" : "root";
+  return (
+    <div styleName={styleName}>
+      Application Route
+      <ExampleComponent />
+      {props.children}
+    </div>
+  );
+};
+
+export default connect(
+  (state) => ({
+    app: appSelector(state)
+  }), null
+)(CSSModules(AppComponent, styles))

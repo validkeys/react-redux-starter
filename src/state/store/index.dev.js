@@ -15,9 +15,9 @@ import reduxRouterMiddleware  from '../redux-middleware/redux-router';
 
 
 const enhancer = compose(
-    // Ensure that loggerMiddleware is ALWAYS last!!!
-    applyMiddleware(thunk, reduxRouterMiddleware, loggerMiddleware),
-    DevTools.instrument()
+  // Ensure that loggerMiddleware is ALWAYS last!!!
+  applyMiddleware(thunk, reduxRouterMiddleware, loggerMiddleware),
+  DevTools.instrument()
 );
 
 const configureStore = (initialState) => {

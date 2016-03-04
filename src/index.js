@@ -5,7 +5,7 @@ import Root from './components/domain/app/root';
 import styles from './styles/app.styl';
 // --------------------------------------------
 
-import { appLoading } from './state/modules/session';
+import { appLoading } from './state/modules/app/actions';
 
 
 import configureStore from './state/store';
@@ -13,5 +13,4 @@ const store = configureStore({});
 
 store.dispatch(appLoading());
 
-ReactDOM.render(<Root store={store} />, document.getElementById("myapp")
-);
+ReactDOM.render(<Root store={store} />, document.getElementById("myapp"));
